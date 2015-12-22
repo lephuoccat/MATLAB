@@ -1,0 +1,155 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>DSpeechP_HW7</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-11-09"><meta name="DC.source" content="DSpeechP_HW7.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">[x1,fs1,bits1,fmt1] = loadwav(<span class="string">'test_16k'</span>);
+x11 = x1(3000:1:3299);
+[x2,fs2,bits2,fmt2] = loadwav(<span class="string">'ah'</span>);
+x22 = x2(3000:1:3299);
+xfreq_v =(fs2/1024)*(0:1023);
+xfreq_f =(fs1/1024)*(0:1023);
+L1 = 160; R1 = 40;
+[y1 f1 t1] = stft(x11, L1,R1);
+L2 = 100; R2 = 25;
+[y2 f2 t2] = stft(x22, L2,R2);
+<span class="comment">% Autocorrelation</span>
+p = 12;
+l = 300;
+[A_af G_af a_af r_af] = autolpc(x11, p);
+[A_av G_av a_av r_av] = autolpc(x12, p);
+[h_af, w_af] = freqz(G_af,A_af,1024,<span class="string">'whole'</span>,fs1);
+[h_av, w_av] = freqz(G_av,A_av,1024,<span class="string">'whole'</span>,fs2);
+<span class="comment">% Lattice</span>
+x1_ext = x1(2988:1:3299);
+x2_ext = x2(2988:1:3299);                       <span class="comment">% extend by p samples</span>
+[E_lf a_lf G_lf k_lf] = lattice(x1_ext, l, p);
+[E_lv a_lv G_lv k_lv] = lattice(x2_ext, l, p);
+[h_lf, w_lf] = freqz(G_lf,k_lf,1024,<span class="string">'whole'</span>,fs1);
+[h_lv, w_lv] = freqz(G_lv,k_lv,1024,<span class="string">'whole'</span>,fs2);
+<span class="comment">% Covariance</span>
+a_cf = cholesky(xf_ext, p);                        <span class="comment">% extend by p samples</span>
+a_cv = cholesky(xv_ext, p);
+<span class="comment">% a_cf = cholesky(xf_ext, p);</span>
+<span class="comment">% a_cv = cholesky(xv_ext, p);</span>
+[h_cf, w_cf] = freqz(1,a_cf,1024,<span class="string">'whole'</span>,fs1);
+[h_cv, w_cv] = freqz(1,a_cv,1024,<span class="string">'whole'</span>,fs2);
+
+plot(xfreq_f, yf(:,1), xfreq_f, 20*log10(abs(h_af)/max(abs(h_af))),xfreq_f, 20*log10(abs(h_lf)/max(abs(h_lf))),xfreq_f, 20*log10(abs(h_cf)/max(abs(h_cf))));
+title(<span class="string">'Fricative'</span>); legend(<span class="string">'normal spectra'</span>, <span class="string">'autocorrelation'</span>,<span class="string">'lattice'</span>,<span class="string">'covariance'</span>)
+figure
+plot(xfreq_v, yv(:,1), xfreq_v, 20*log10(abs(h_av)/max(abs(h_av))),xfreq_v, 20*log10(abs(h_lv)/max(abs(h_lv))),xfreq_v, 20*log10(abs(h_cv)/max(abs(h_cv))));
+title(<span class="string">'Fricative'</span>); legend(<span class="string">'normal spectra'</span>, <span class="string">'autocorrelation'</span>,<span class="string">'lattice'</span>,<span class="string">'covariance'</span>)
+title(<span class="string">'Vowel Steady State'</span>);
+</pre><pre class="codeoutput error">Error using stft (line 32)
+Not enough input arguments.
+
+Error in DSpeechP_HW7 (line 9)
+[y1 f1 t1] = stft(x11, L1,R1);
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%
+[x1,fs1,bits1,fmt1] = loadwav('test_16k');
+x11 = x1(3000:1:3299);
+[x2,fs2,bits2,fmt2] = loadwav('ah');
+x22 = x2(3000:1:3299);
+xfreq_v =(fs2/1024)*(0:1023);
+xfreq_f =(fs1/1024)*(0:1023);
+L1 = 160; R1 = 40;
+[y1 f1 t1] = stft(x11, L1,R1);
+L2 = 100; R2 = 25;
+[y2 f2 t2] = stft(x22, L2,R2); 
+% Autocorrelation
+p = 12;
+l = 300;
+[A_af G_af a_af r_af] = autolpc(x11, p);
+[A_av G_av a_av r_av] = autolpc(x12, p);
+[h_af, w_af] = freqz(G_af,A_af,1024,'whole',fs1);
+[h_av, w_av] = freqz(G_av,A_av,1024,'whole',fs2);
+% Lattice
+x1_ext = x1(2988:1:3299); 
+x2_ext = x2(2988:1:3299);                       % extend by p samples
+[E_lf a_lf G_lf k_lf] = lattice(x1_ext, l, p);
+[E_lv a_lv G_lv k_lv] = lattice(x2_ext, l, p);
+[h_lf, w_lf] = freqz(G_lf,k_lf,1024,'whole',fs1);
+[h_lv, w_lv] = freqz(G_lv,k_lv,1024,'whole',fs2);
+% Covariance
+a_cf = cholesky(xf_ext, p);                        % extend by p samples
+a_cv = cholesky(xv_ext, p);
+% a_cf = cholesky(xf_ext, p);
+% a_cv = cholesky(xv_ext, p);
+[h_cf, w_cf] = freqz(1,a_cf,1024,'whole',fs1);
+[h_cv, w_cv] = freqz(1,a_cv,1024,'whole',fs2);
+
+plot(xfreq_f, yf(:,1), xfreq_f, 20*log10(abs(h_af)/max(abs(h_af))),xfreq_f, 20*log10(abs(h_lf)/max(abs(h_lf))),xfreq_f, 20*log10(abs(h_cf)/max(abs(h_cf))));
+title('Fricative'); legend('normal spectra', 'autocorrelation','lattice','covariance')
+figure
+plot(xfreq_v, yv(:,1), xfreq_v, 20*log10(abs(h_av)/max(abs(h_av))),xfreq_v, 20*log10(abs(h_lv)/max(abs(h_lv))),xfreq_v, 20*log10(abs(h_cv)/max(abs(h_cv))));
+title('Fricative'); legend('normal spectra', 'autocorrelation','lattice','covariance')
+title('Vowel Steady State');
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,148 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="1406366730" file="C:\MATLAB\DSP\Rabiner\DownloadAll\Spectrogram\Spectrogram\Spectrogram_GUI25.prj" location="C:\MATLAB\DSP\Rabiner\DownloadAll\Spectrogram\Spectrogram" name="Spectrogram_GUI25" target="target.mlapps" target-name="Package App">
+    <param.appname>Spectrogram_GUI25</param.appname>
+    <param.authnamewatermark>Speech Processing</param.authnamewatermark>
+    <param.email>speechprocessing2013@gmail.com</param.email>
+    <param.company>Rutgers University/Stanford University</param.company>
+    <param.icon>${PROJECT_ROOT}\Spectrogram_GUI25_resources\icon_24.png</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}\Spectrogram_GUI25_resources\icon_48.png</file>
+      <file>${PROJECT_ROOT}\Spectrogram_GUI25_resources\icon_24.png</file>
+      <file>${PROJECT_ROOT}\Spectrogram_GUI25_resources\icon_16.png</file>
+    </param.icons>
+    <param.summary>This exercise plots wideband and narrowband speech spectrograms for a user-designated speech file.</param.summary>
+    <param.description>The sound spectrogram is one of the most fundamental tools of digital speech processing. The sound spectrogram of a speech file is an image map of the sequence of short-time log (or linear) spectrums, where each spectrum is obtained from an STFT analysis of a frame of speech, and subsequent spectrums are obtained from STFT analyses of subsequent, highly overlapped in time, frames of speech. Thus the sound spectrogram is a two-dimensional (image) plot of speech spectral information (linear or log magnitude) over the duration of the speech signal.</param.description>
+    <param.screenshot>${PROJECT_ROOT}\Spectrogram.jpg</param.screenshot>
+    <param.version>1.0</param.version>
+    <param.products.name>
+      <item>MATLAB</item>
+      <item>Signal Processing Toolbox</item>
+    </param.products.name>
+    <param.products.id>
+      <item>'1'</item>
+      <item>'8'</item>
+    </param.products.id>
+    <param.products.version>
+      <item>8.5</item>
+      <item>7.0</item>
+    </param.products.version>
+    <param.platforms />
+    <param.output>${PROJECT_ROOT}\Spectrogram_GUI25.mlappinstall</param.output>
+    <param.guid>8fd5ef38-4347-46e0-b1c2-0498087ccd11</param.guid>
+    <unset>
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.version />
+      <param.platforms />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\Spectrogram_GUI25.m</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\Callbacks_Spectrogram_GUI25.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\a_aca.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\analysis.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\analysis_VUS.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\atolsp.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\AtoV.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\autolpc.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\bpf.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\cepstrum_lpc.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\cholesky.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\compute_cep.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\durbin.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\echo_file.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\findpeak.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\four_line_plot.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\fxquant.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\highpass_filter_signal.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\hpf.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\lattice.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\loadraw.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\loadSelection.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\loadwav.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\lpc_cepstrum.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\lpccoef_parcor.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\maketimitwav.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\mean_sigma.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\medf.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\mulaw.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\mulawinv.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\parcor_lpccoef.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\pd_spect.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\play_files.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\plot_spectrum.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\plot_strips.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\poly_roots_complex_cep.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\pspectrogram.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\record_speech.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\saveraw.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\savewav.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\snr.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\sp_gram.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\spectrogram_lrr.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\spectrogram_speech.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\srconv.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\striplot.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\strips_modified.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\VtoA.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\VUS.m</file>
+    </fileset.depfun>
+    <fileset.resources>
+      <file>${PROJECT_ROOT}\3.7 Spectrogram.pdf</file>
+      <file>${PROJECT_ROOT}\functions_lrr</file>
+      <file>${PROJECT_ROOT}\Read_Me.txt</file>
+      <file>${PROJECT_ROOT}\Spectrogram.mat</file>
+    </fileset.resources>
+    <fileset.package />
+    <build-deliverables>
+      <file location="C:\MATLAB\DSP\Rabiner\DownloadAll\Spectrogram\Spectrogram" name="Spectrogram_GUI25.mlappinstall" optional="false">C:\MATLAB\DSP\Rabiner\DownloadAll\Spectrogram\Spectrogram\Spectrogram_GUI25.mlappinstall</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2015a</root>
+      <toolboxes>
+        <toolbox name="matlabhdlcoder" />
+        <toolbox name="fixedpoint" />
+        <toolbox name="embeddedcoder" />
+        <toolbox name="matlabcoder" />
+      </toolboxes>
+      <toolbox>
+        <matlabhdlcoder>
+          <enabled>true</enabled>
+        </matlabhdlcoder>
+      </toolbox>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <embeddedcoder>
+          <enabled>true</enabled>
+        </embeddedcoder>
+      </toolbox>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>6.1</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

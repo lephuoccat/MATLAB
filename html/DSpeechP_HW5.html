@@ -1,0 +1,396 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>DSpeechP_HW5</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-10-17"><meta name="DC.source" content="DSpeechP_HW5.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Problem 7</a></li></ul></div><pre class="codeinput"><span class="comment">% read in speech filename, play out file, create spectrogram and plot</span>
+filename=input(<span class="string">'enter speech filename:'</span>,<span class="string">'s'</span>);
+narrowbw=input(<span class="string">'enter bandwidth for narrowband spectrogram:'</span>);
+widebw=input(<span class="string">'enter bandwidth for wideband spectrogram:'</span>);
+sw=input(<span class="string">'enter dynamic range switch (1 for increased range, 0 for standard range):'</span>);
+[x,fs]=wavread(filename);
+xinn=x/max(max(x) -min(x));
+sound(xinn,fs);
+
+<span class="comment">% resample down to 8 kHz if fs=16 kHz</span>
+<span class="keyword">if</span> (fs == 16000)
+y=decimate(x,2);
+fs=8000;
+<span class="keyword">end</span>
+subplot(3,1,1);
+spectrogram(y,fs,narrowbw,sw);
+stitle1=sprintf(<span class="string">'file: %s, fs:%d, nsamp: %d, NB BW:%d, WB BW:%d'</span>,<span class="keyword">...</span>
+filename,fs,length(x),narrowbw,widebw);
+title(stitle1);
+subplot(3,1,2);
+spectrogram(y,fs,widebw,sw);
+subplot(3,1,3);
+plot(y),ylabel(<span class="string">' amplitude'</span>);
+xlabel(<span class="string">'Time (s)'</span>);
+
+<span class="comment">% Plot grayscale spectrogram with variable sampling rate and bandwidth</span>
+<span class="comment">% x is input speech</span>
+<span class="comment">% fs is sampling frequency (Hz)</span>
+<span class="comment">% bw is the bandwidth of the filter used in the spectral analysis</span>
+<span class="comment">% sw is a switch on spectrogram dynamic range--sw=0 for male, isw=1 for</span>
+<span class="comment">% female =&gt; increases dynamic range of spectrum for display)</span>
+<span class="comment">% Set minimum FFT length</span>
+fftmin = 256;
+<span class="comment">% Set 2*fs/bw variable window length for good resolution (long block length</span>
+<span class="comment">% will provide higher frequency resolution as main-lobe of the window</span>
+<span class="comment">% function will be narrow and short block length will provide higher time</span>
+<span class="comment">% resolution as less averaging across samples is performed for each</span>
+<span class="comment">% STFT value</span>
+winlen = floor(2*fs/bw);
+
+<span class="comment">% Get FFT length</span>
+fftlen = max([winlen fftmin]);
+<span class="comment">% Create window (Hamming for favorable sidelobe attenuation) and zero pad accordingly</span>
+win = [hamming(winlen) ; zeros(fftlen-winlen,1)];
+win = win/sum(win);
+windel = (0:(length(win)-1)) * win;
+<span class="comment">% Set overlap (Effects expansion of spectrogram display as no overlap plots</span>
+<span class="comment">% fftlen data points and maximum overlap gives 1 data point)</span>
+ntime = 500; <span class="comment">% Choose based on trial-and-error for best looking plot</span>
+overlap = floor(max(fftlen/2, (ntime*fftlen-length(x))/(ntime-1)));
+ntime = floor((length(x)-overlap)/(fftlen-overlap));
+
+<span class="comment">% Create arrays</span>
+c1=(1:fftlen)';
+r1=(0:ntime-1)*(fftlen-overlap);
+<span class="comment">% Take FFT of real data</span>
+b = fft(x(c1(:,ones(1,ntime))+r1(ones(fftlen,1),:)).*win(:,ones(1,ntime)));
+<span class="keyword">if</span> size(b,1) == 1
+m = length(b,1);
+b(floor((m+4)/2):m) = [];
+<span class="keyword">else</span>
+m=size(b,1);
+b(floor((m+4)/2):m,:) = [];
+<span class="keyword">end</span>
+b = b.*conj(b);
+<span class="comment">% Setup pixel locations for plot on frequency axis and time axis</span>
+f=(0:fftlen/2)*fs/fftlen;
+t = (r1+windel)/fs;
+<span class="comment">% Set limit for dB scale--this eliminates low level spectral info</span>
+lim = max(b(:))*0.0001;
+<span class="keyword">if</span> (sw == 1)
+lim=lim/10;
+<span class="keyword">end</span>
+<span class="comment">% Set dB scale</span>
+b=10*log10(max(b,lim));
+<span class="comment">% Plot</span>
+imh = imagesc(t,f/1000,b);
+<span class="comment">% Set up axis and labels for plot</span>
+axis(<span class="string">'xy'</span>);
+<span class="comment">% title('Spectrogram');</span>
+<span class="comment">% xlabel('Time (s)');</span>
+ylabel(<span class="string">'Frequency (kHz)'</span>);
+<span class="comment">% Set and apply grayscale levels</span>
+colormap(gray);
+map2 = colormap;
+map2 = 1 - map2;
+colormap(map2);
+<span class="comment">% colorbar;</span>
+orient <span class="string">landscape</span>;
+</pre><pre class="codeoutput error">Error: File: /Users/catphuocle/Documents/MATLAB/DSpeechP_HW5.m Line: 129 Column: 1
+Function definitions are not permitted in this context.
+</pre><h2>Problem 7<a name="2"></a></h2><pre class="codeinput">clc;
+<span class="comment">% read in speech filename, play out file, create spectrogram and plot</span>
+filename=input(<span class="string">'enter speech filename:'</span>,<span class="string">'s'</span>);
+narrowbw=input(<span class="string">'enter bandwidth for narrowband spectrogram:'</span>);
+widebw=input(<span class="string">'enter bandwidth for wideband spectrogram:'</span>);
+sw=input(<span class="string">'enter dynamic range switch (1 for increased range, 0 for standard range):'</span>);
+[x,fs]=wavread(filename);
+xinn=x/max(max(x) -min(x));
+sound(xinn,fs); pause;
+x2 = stft(x', 512, 512, 256);
+x3 = speechrate(x2,2);
+y=istft(x3,512,512,256);
+ysav=y*30000/max(max(y) -min(y));
+savewav(ysav,<span class="string">'temp_speedup_2.wav'</span>,fs);
+xinn=y/max(y); sound(xinn,fs);
+figure(1);
+stitle=sprintf(<span class="string">'Original file: %s, number of samples in file: %d'</span>,filename,length(x));
+subplot(2,1,1), plot(x), title(stitle);
+xlabel(<span class="string">'Sample number'</span>), ylabel(<span class="string">'Amplitude'</span>);
+subplot(2,1,2),plot(y),title(<span class="string">'Speeded up speech signal'</span>);
+xlabel(<span class="string">'Sample number'</span>),ylabel(<span class="string">'Amplitude'</span>);
+figure(2);
+subplot(2,1,1);
+spectrogram(x,fs,narrowbw,sw);
+stitle=sprintf(<span class="string">'Narrowband Spectrogram (%d Hz), Original file: %s'</span>,narrowbw,filename);
+title(stitle);
+subplot(2,1,2);
+spectrogram(y,fs,narrowbw,sw);
+title(<span class="string">'Speeded up by 2-1 speech signal'</span>);
+figure(3);
+subplot(2,1,1);
+spectrogram(x,fs,widebw,sw);
+stitle=sprintf(<span class="string">'Wideband Spectrogram (%d Hz), Original file: %s'</span>,widebw,filename);
+title(stitle);
+subplot(2,1,2);
+spectrogram(y,fs,widebw,sw);
+title(<span class="string">'Speeded up by 2-1 speech signal'</span>);
+<span class="keyword">function</span> y = speechrate(x,rate)
+<span class="comment">% Takes STFT data in x and removes frames according to</span>
+<span class="comment">% (1:rate) to speed up speech (rate) times.</span>
+<span class="comment">% RATE must be integer!</span>
+s = size(x);
+cols = s(2);
+y = x(:,1:rate:cols);
+<span class="keyword">function</span> x = istft(d, ftsize, w, h)
+<span class="comment">% X = istft(D, F, W, H) Inverse short-time Fourier transform.</span>
+<span class="comment">% Performs overlap-add resynthesis from the short-time Fourier transform</span>
+<span class="comment">% data in D. Each column of D is taken as the result of an F-point</span>
+<span class="comment">% fft and each successive frame is offset by H points. Data is rect</span>
+<span class="comment">% windowed at W pts. Also has option to use Hamming window.</span>
+s = size(d);
+cols = s(2);
+xlen = ftsize + cols * (h);
+x = zeros(1,xlen);
+<span class="keyword">if</span> rem(w, 2) == 0 <span class="comment">% force window to be odd-len</span>
+w = w + 1;
+<span class="keyword">end</span>
+win = zeros(1, ftsize);
+halff = ftsize/2; <span class="comment">% midpoint of win</span>
+halflen = (w-1)/2;
+acthalflen = min(halff, halflen);
+<span class="comment">%halfwin = 0.5 * ( 1 + cos( pi * (0:halflen)/halflen)); % Hamming window</span>
+halfwin = boxcar(halflen); <span class="comment">% Rect window</span>
+win((halff+1):(halff+acthalflen)) = halfwin(1:acthalflen);
+win((halff+1):-1:(halff-acthalflen+2)) = halfwin(1:acthalflen);
+<span class="keyword">for</span> b = 0:h:(h*(cols-1)) <span class="comment">% Perform inverse transform</span>
+ft = d(:,1+b/h)';
+ft = [ft, conj(ft([((ftsize/2)):-1:2]))];
+px = real(ifft(ft));
+x((b+1):(b+ftsize)) = x((b+1):(b+ftsize))+px.*win;
+<span class="keyword">end</span>;
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% read in speech filename, play out file, create spectrogram and plot
+filename=input('enter speech filename:','s');
+narrowbw=input('enter bandwidth for narrowband spectrogram:');
+widebw=input('enter bandwidth for wideband spectrogram:');
+sw=input('enter dynamic range switch (1 for increased range, 0 for standard range):');
+[x,fs]=wavread(filename);
+xinn=x/max(max(x) -min(x));
+sound(xinn,fs);
+
+% resample down to 8 kHz if fs=16 kHz
+if (fs == 16000)
+y=decimate(x,2);
+fs=8000;
+end
+subplot(3,1,1);
+spectrogram(y,fs,narrowbw,sw);
+stitle1=sprintf('file: %s, fs:%d, nsamp: %d, NB BW:%d, WB BW:%d',...
+filename,fs,length(x),narrowbw,widebw);
+title(stitle1);
+subplot(3,1,2);
+spectrogram(y,fs,widebw,sw);
+subplot(3,1,3);
+plot(y),ylabel(' amplitude');
+xlabel('Time (s)');
+
+% Plot grayscale spectrogram with variable sampling rate and bandwidth
+% x is input speech
+% fs is sampling frequency (Hz)
+% bw is the bandwidth of the filter used in the spectral analysis
+% sw is a switch on spectrogram dynamic rangeREPLACE_WITH_DASH_DASHsw=0 for male, isw=1 for
+% female => increases dynamic range of spectrum for display)
+% Set minimum FFT length
+fftmin = 256;
+% Set 2*fs/bw variable window length for good resolution (long block length
+% will provide higher frequency resolution as main-lobe of the window
+% function will be narrow and short block length will provide higher time
+% resolution as less averaging across samples is performed for each
+% STFT value
+winlen = floor(2*fs/bw);
+
+% Get FFT length
+fftlen = max([winlen fftmin]);
+% Create window (Hamming for favorable sidelobe attenuation) and zero pad accordingly
+win = [hamming(winlen) ; zeros(fftlen-winlen,1)];
+win = win/sum(win);
+windel = (0:(length(win)-1)) * win;
+% Set overlap (Effects expansion of spectrogram display as no overlap plots
+% fftlen data points and maximum overlap gives 1 data point)
+ntime = 500; % Choose based on trial-and-error for best looking plot
+overlap = floor(max(fftlen/2, (ntime*fftlen-length(x))/(ntime-1)));
+ntime = floor((length(x)-overlap)/(fftlen-overlap));
+
+% Create arrays
+c1=(1:fftlen)';
+r1=(0:ntime-1)*(fftlen-overlap);
+% Take FFT of real data
+b = fft(x(c1(:,ones(1,ntime))+r1(ones(fftlen,1),:)).*win(:,ones(1,ntime)));
+if size(b,1) == 1
+m = length(b,1);
+b(floor((m+4)/2):m) = [];
+else
+m=size(b,1);
+b(floor((m+4)/2):m,:) = [];
+end
+b = b.*conj(b);
+% Setup pixel locations for plot on frequency axis and time axis
+f=(0:fftlen/2)*fs/fftlen;
+t = (r1+windel)/fs;
+% Set limit for dB scaleREPLACE_WITH_DASH_DASHthis eliminates low level spectral info
+lim = max(b(:))*0.0001;
+if (sw == 1)
+lim=lim/10;
+end
+% Set dB scale
+b=10*log10(max(b,lim));
+% Plot
+imh = imagesc(t,f/1000,b);
+% Set up axis and labels for plot
+axis('xy');
+% title('Spectrogram');
+% xlabel('Time (s)');
+ylabel('Frequency (kHz)');
+% Set and apply grayscale levels
+colormap(gray);
+map2 = colormap;
+map2 = 1 - map2;
+colormap(map2);
+% colorbar;
+orient landscape;
+
+%% Problem 7
+clc;
+% read in speech filename, play out file, create spectrogram and plot
+filename=input('enter speech filename:','s');
+narrowbw=input('enter bandwidth for narrowband spectrogram:');
+widebw=input('enter bandwidth for wideband spectrogram:');
+sw=input('enter dynamic range switch (1 for increased range, 0 for standard range):');
+[x,fs]=wavread(filename);
+xinn=x/max(max(x) -min(x));
+sound(xinn,fs); pause;
+x2 = stft(x', 512, 512, 256);
+x3 = speechrate(x2,2);
+y=istft(x3,512,512,256);
+ysav=y*30000/max(max(y) -min(y));
+savewav(ysav,'temp_speedup_2.wav',fs);
+xinn=y/max(y); sound(xinn,fs);
+figure(1);
+stitle=sprintf('Original file: %s, number of samples in file: %d',filename,length(x));
+subplot(2,1,1), plot(x), title(stitle);
+xlabel('Sample number'), ylabel('Amplitude');
+subplot(2,1,2),plot(y),title('Speeded up speech signal');
+xlabel('Sample number'),ylabel('Amplitude');
+figure(2);
+subplot(2,1,1);
+spectrogram(x,fs,narrowbw,sw);
+stitle=sprintf('Narrowband Spectrogram (%d Hz), Original file: %s',narrowbw,filename);
+title(stitle);
+subplot(2,1,2);
+spectrogram(y,fs,narrowbw,sw);
+title('Speeded up by 2-1 speech signal');
+figure(3);
+subplot(2,1,1);
+spectrogram(x,fs,widebw,sw);
+stitle=sprintf('Wideband Spectrogram (%d Hz), Original file: %s',widebw,filename);
+title(stitle);
+subplot(2,1,2);
+spectrogram(y,fs,widebw,sw);
+title('Speeded up by 2-1 speech signal');
+function y = speechrate(x,rate)
+% Takes STFT data in x and removes frames according to
+% (1:rate) to speed up speech (rate) times.
+% RATE must be integer!
+s = size(x);
+cols = s(2);
+y = x(:,1:rate:cols);
+function x = istft(d, ftsize, w, h)
+% X = istft(D, F, W, H) Inverse short-time Fourier transform.
+% Performs overlap-add resynthesis from the short-time Fourier transform
+% data in D. Each column of D is taken as the result of an F-point
+% fft and each successive frame is offset by H points. Data is rect
+% windowed at W pts. Also has option to use Hamming window.
+s = size(d);
+cols = s(2);
+xlen = ftsize + cols * (h);
+x = zeros(1,xlen);
+if rem(w, 2) == 0 % force window to be odd-len
+w = w + 1;
+end
+win = zeros(1, ftsize);
+halff = ftsize/2; % midpoint of win
+halflen = (w-1)/2;
+acthalflen = min(halff, halflen);
+%halfwin = 0.5 * ( 1 + cos( pi * (0:halflen)/halflen)); % Hamming window
+halfwin = boxcar(halflen); % Rect window
+win((halff+1):(halff+acthalflen)) = halfwin(1:acthalflen);
+win((halff+1):-1:(halff-acthalflen+2)) = halfwin(1:acthalflen);
+for b = 0:h:(h*(cols-1)) % Perform inverse transform
+ft = d(:,1+b/h)';
+ft = [ft, conj(ft([((ftsize/2)):-1:2]))];
+px = real(ifft(ft));
+x((b+1):(b+ftsize)) = x((b+1):(b+ftsize))+px.*win;
+end;
+##### SOURCE END #####
+--></body></html>

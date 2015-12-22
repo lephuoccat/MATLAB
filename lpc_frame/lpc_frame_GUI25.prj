@@ -1,0 +1,151 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="3736410160" file="C:\MATLAB\DSP\Rabiner\DownloadAll\lpc_frame\lpc_frame\lpc_frame_GUI25.prj" location="C:\MATLAB\DSP\Rabiner\DownloadAll\lpc_frame\lpc_frame" name="lpc_frame_GUI25" target="target.mlapps" target-name="Package App">
+    <param.appname>lpc_frame_GUI25</param.appname>
+    <param.authnamewatermark>Speech Processing</param.authnamewatermark>
+    <param.email>speechprocessing2013@gmail.com</param.email>
+    <param.company>Rutgers University/Standford University</param.company>
+    <param.icon>${PROJECT_ROOT}\lpc_frame_GUI25_resources\icon_24.png</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}\lpc_frame_GUI25_resources\icon_48.png</file>
+      <file>${PROJECT_ROOT}\lpc_frame_GUI25_resources\icon_24.png</file>
+      <file>${PROJECT_ROOT}\lpc_frame_GUI25_resources\icon_16.png</file>
+    </param.icons>
+    <param.summary>This exercise shows how the method of linear predictive coding (LPC) models a speech frame.</param.summary>
+    <param.description>This MATLAB exercise computes the log magnitude of the STFT of a specified frame of speech. Then, using the same frame of speech, the exercise computes LPC log spectral matches to the speech frame, using the autocorrelation method, the covariance method, and the lattice method. The four resulting log magnitude responses (from the STFT of the speech frame and from the three LPC analysis methods) are then plotted on a common plot, and compared in terms of how each LPC analysis method approximates the STFT log magnitude response.</param.description>
+    <param.screenshot>${PROJECT_ROOT}\lpc_frame.jpg</param.screenshot>
+    <param.version>1.0</param.version>
+    <param.products.name>
+      <item>MATLAB</item>
+      <item>Signal Processing Toolbox</item>
+    </param.products.name>
+    <param.products.id>
+      <item>'1'</item>
+      <item>'8'</item>
+    </param.products.id>
+    <param.products.version>
+      <item>8.5</item>
+      <item>7.0</item>
+    </param.products.version>
+    <param.platforms />
+    <param.output>${PROJECT_ROOT}\lpc_frame_GUI25.mlappinstall</param.output>
+    <param.guid>c4f134c1-7a61-4a52-b21e-dd8c701a9363</param.guid>
+    <unset>
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.version />
+      <param.platforms />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\lpc_frame_GUI25.m</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\Callbacks_lpc_frame_GUI25.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\a_aca.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\analysis.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\analysis_VUS.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\atolsp.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\AtoV.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\autolpc.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\bpf.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\cepstrum_lpc.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\cholesky.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\compute_cep.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\durbin.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\echo_file.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\findpeak.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\four_line_plot.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\fxquant.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\highpass_filter_signal.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\hpf.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\lattice.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\loadraw.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\loadSelection.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\loadwav.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\lpc_cepstrum.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\lpccoef_parcor.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\maketimitwav.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\mean_sigma.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\medf.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\mulaw.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\mulawinv.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\parcor_lpccoef.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\pd_spect.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\play_files.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\plot_spectrum.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\plot_strips.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\poly_roots_complex_cep.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\pspectrogram.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\record_speech.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\saveraw.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\savewav.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\snr.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\sp_gram.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\spectrogram_lrr.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\spectrogram_speech.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\srconv.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\striplot.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\strips_modified.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\VtoA.m</file>
+      <file>${PROJECT_ROOT}\functions_lrr\VUS.m</file>
+      <file>${PROJECT_ROOT}\lpc_frame_analysis.m</file>
+      <file>${PROJECT_ROOT}\plot_speech_cursor.m</file>
+      <file>${PROJECT_ROOT}\plot_speech_frame.m</file>
+    </fileset.depfun>
+    <fileset.resources>
+      <file>${PROJECT_ROOT}\3.16 LPC Frame.pdf</file>
+      <file>${PROJECT_ROOT}\functions_lrr</file>
+      <file>${PROJECT_ROOT}\lpc_frame.mat</file>
+      <file>${PROJECT_ROOT}\Read_Me.txt</file>
+    </fileset.resources>
+    <fileset.package />
+    <build-deliverables>
+      <file location="C:\MATLAB\DSP\Rabiner\DownloadAll\lpc_frame\lpc_frame" name="lpc_frame_GUI25.mlappinstall" optional="false">C:\MATLAB\DSP\Rabiner\DownloadAll\lpc_frame\lpc_frame\lpc_frame_GUI25.mlappinstall</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2015a</root>
+      <toolboxes>
+        <toolbox name="matlabhdlcoder" />
+        <toolbox name="fixedpoint" />
+        <toolbox name="embeddedcoder" />
+        <toolbox name="matlabcoder" />
+      </toolboxes>
+      <toolbox>
+        <matlabhdlcoder>
+          <enabled>true</enabled>
+        </matlabhdlcoder>
+      </toolbox>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <embeddedcoder>
+          <enabled>true</enabled>
+        </embeddedcoder>
+      </toolbox>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>6.1</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

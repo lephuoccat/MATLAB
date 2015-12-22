@@ -1,0 +1,125 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>DSpeechP_HW3</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-09-20"><meta name="DC.source" content="DSpeechP_HW3.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">fileID = fopen(<span class="string">'filelist.txt'</span>);         <span class="comment">% load text file (.txt)</span>
+C = textscan(fileID,<span class="string">'%s'</span>);              <span class="comment">% scan loaded file</span>
+fclose(fileID);                         <span class="comment">% close text file</span>
+
+str1 = C{1}{1};                         <span class="comment">% audio file 1</span>
+str2 = C{1}{2};                         <span class="comment">% audio file 2</span>
+str3 = C{1}{3};                         <span class="comment">% audio file 3</span>
+str4 = C{1}{4};                         <span class="comment">% audio file 4</span>
+str5 = C{1}{5};                         <span class="comment">% audio file 5</span>
+
+[x1,fs1] = audioread(str1);             <span class="comment">% read audio file 1</span>
+[x2,fs2] = audioread(str2);             <span class="comment">% read audio file 2</span>
+[x3,fs3] = audioread(str3);             <span class="comment">% read audio file 3</span>
+[x4,fs4] = audioread(str4);             <span class="comment">% read audio file 4</span>
+[x5,fs5] = audioread(str5);             <span class="comment">% read audio file 5</span>
+
+delay1 = size(x1)/fs1;                  <span class="comment">% duration of audio file 1</span>
+delay2 = size(x2)/fs2;                  <span class="comment">% duration of audio file 2</span>
+delay3 = size(x3)/fs3;                  <span class="comment">% duration of audio file 3</span>
+delay4 = size(x4)/fs4;                  <span class="comment">% duration of audio file 4</span>
+
+sound(x1,fs1); pause(delay1);           <span class="comment">% play audio file 1, and wait</span>
+sound(x2,fs2); pause(delay2);           <span class="comment">% play audio file 2 after finish audio file 1</span>
+sound(x3,fs3); pause(delay3);           <span class="comment">% play audio file 2 after finish audio file 2</span>
+sound(x4,fs4); pause(delay4);           <span class="comment">% play audio file 2 after finish audio file 3</span>
+sound(x5,fs5);                          <span class="comment">% play audio file 2 after finish audio file 4</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+fileID = fopen('filelist.txt');         % load text file (.txt)
+C = textscan(fileID,'%s');              % scan loaded file
+fclose(fileID);                         % close text file
+
+str1 = C{1}{1};                         % audio file 1
+str2 = C{1}{2};                         % audio file 2
+str3 = C{1}{3};                         % audio file 3
+str4 = C{1}{4};                         % audio file 4
+str5 = C{1}{5};                         % audio file 5
+
+[x1,fs1] = audioread(str1);             % read audio file 1
+[x2,fs2] = audioread(str2);             % read audio file 2
+[x3,fs3] = audioread(str3);             % read audio file 3
+[x4,fs4] = audioread(str4);             % read audio file 4
+[x5,fs5] = audioread(str5);             % read audio file 5
+
+delay1 = size(x1)/fs1;                  % duration of audio file 1
+delay2 = size(x2)/fs2;                  % duration of audio file 2
+delay3 = size(x3)/fs3;                  % duration of audio file 3
+delay4 = size(x4)/fs4;                  % duration of audio file 4
+
+sound(x1,fs1); pause(delay1);           % play audio file 1, and wait
+sound(x2,fs2); pause(delay2);           % play audio file 2 after finish audio file 1
+sound(x3,fs3); pause(delay3);           % play audio file 2 after finish audio file 2
+sound(x4,fs4); pause(delay4);           % play audio file 2 after finish audio file 3
+sound(x5,fs5);                          % play audio file 2 after finish audio file 4
+
+##### SOURCE END #####
+--></body></html>

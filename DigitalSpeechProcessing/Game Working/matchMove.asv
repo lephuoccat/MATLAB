@@ -1,0 +1,44 @@
+function [output] = matchMove(input_string)
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+
+structA1 = struct('move',{'A1'},'coordLog',logical([0,0,0;0,0,0;1,0,0]));
+structA2 = struct('move',{'A2'},'coordLog',logical([0,0,0;1,0,0;0,0,0]));
+structA3 = struct('move',{'A3'},'coordLog',logical([1,0,0;0,0,0;0,0,0]));
+structB1 = struct('move',{'B1'},'coordLog',logical([0,0,0;0,0,0;0,1,0]));
+structB2 = struct('move',{'B2'},'coordLog',logical([0,0,0;0,1,0;0,0,0]));
+structB3 = struct('move',{'B3'},'coordLog',logical([0,1,0;0,0,0;0,0,0]));
+structC1 = struct('move',{'C1'},'coordLog',logical([0,0,0;0,0,0;0,0,1]));
+structC2 = struct('move',{'C2'},'coordLog',logical([0,0,0;0,0,1;0,0,0]));
+structC3 = struct('move',{'C3'},'coordLog',logical([0,0,1;0,0,0;0,0,0]));
+
+    if input_string == structA1.move
+                output = structA1;
+        
+    elseif input_string == structA2.move
+                output = structA2;
+
+    elseif input_string == structA3.move
+                output = structA3;
+
+    elseif input_string == structB1.move
+                output = structB1;
+
+    elseif input_string == structB2.move
+                output = structB2;
+
+    elseif input_string == structB3.move
+                output = structB3;
+
+    elseif input_string == structC1.move
+                output = structC1;
+
+    elseif input_string == structC2.move
+                output = structC2;
+
+    else input_string == structC3.move
+                output = structC3;
+    end
+    
+end
+

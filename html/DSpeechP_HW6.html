@@ -1,0 +1,301 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>DSpeechP_HW6</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-10-29"><meta name="DC.source" content="DSpeechP_HW6.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Part 2</a></li><li><a href="#2">Part 5</a></li><li><a href="#3">x1</a></li><li><a href="#4">x2</a></li><li><a href="#5">x3</a></li><li><a href="#6">x4</a></li><li><a href="#7">x5</a></li></ul></div><h2>Part 2<a name="1"></a></h2><pre class="codeinput">t1 = [-10:1:-1];
+y1 = 0.*t1;
+t2 = [0];
+y2 = log(8)+0.*t2;
+t3 = [1:1:10];
+y3 = ((1/6).^t3-(4).^t3)./t3;
+stem(t1,y1)
+hold <span class="string">on</span>
+stem(t2,y2)
+hold <span class="string">on</span>
+stem(t3,y3)
+</pre><img vspace="5" hspace="5" src="DSpeechP_HW6_01.png" alt=""> <h2>Part 5<a name="2"></a></h2><h2>x1<a name="3"></a></h2><pre class="codeinput">n = [0:1:99];
+x1 = [1 zeros(1,98) -0.85];
+subplot(3,1,1); stem(n,x1);
+title(<span class="string">'x_1[n] = \delta[n] - 0.85 \delta[n-99]'</span>);
+ylabel(<span class="string">'waveform'</span>); axis([-1 100 -1 1.2]);
+
+x1_hat = cceps(x1);
+subplot(3,1,2); stem(n,x1_hat);
+ylabel(<span class="string">'complex cepstrum'</span>);
+
+c1 = rceps(x1);
+subplot(3,1,3); stem(n,c1);
+ylabel(<span class="string">'real cepstrum'</span>);
+</pre><img vspace="5" hspace="5" src="DSpeechP_HW6_02.png" alt=""> <h2>x2<a name="4"></a></h2><pre class="codeinput">n = [0:1:99];
+x2 = sin(2/100*pi.*n);
+subplot(3,1,1); stem(n,x2);
+title(<span class="string">'x_2[n] = sin[2\pi n/100]'</span>);
+ylabel(<span class="string">'waveform'</span>); axis([-1 100 -1.2 1.2]);
+
+x2_hat = cceps(x2);
+subplot(3,1,2); stem(n,x2_hat);
+ylabel(<span class="string">'complex cepstrum'</span>);
+
+c2 = rceps(x2);
+subplot(3,1,3); stem(n,c2);
+ylabel(<span class="string">'real cepstrum'</span>);
+</pre><img vspace="5" hspace="5" src="DSpeechP_HW6_03.png" alt=""> <h2>x3<a name="5"></a></h2><pre class="codeinput">n = [0:1:99];
+x3 = 0.95.^n;
+subplot(3,1,1); stem(n,x3);
+title(<span class="string">'x_3[n] = 0.95^n'</span>);
+ylabel(<span class="string">'waveform'</span>); axis([-1 100 -0.5 1.2]);
+
+x3_hat = cceps(x3);
+subplot(3,1,2); stem(n,x3_hat);
+ylabel(<span class="string">'complex cepstrum'</span>);
+
+c3 = rceps(x3);
+subplot(3,1,3); stem(n,c3);
+ylabel(<span class="string">'real cepstrum'</span>);
+</pre><h2>x4<a name="6"></a></h2><pre class="codeinput">[y1,fs1,bit1,fmt1] = loadwav(<span class="string">'test_16k.wav'</span>);
+f = linspace(0,fs1,1024);
+t = [0:1:399];
+n4 = [0:1:640];
+h = @(n) 0.54-0.46*cos(pi.*n./15);              <span class="comment">% Hamming window</span>
+r1 = h(n4);
+
+x4 = y1(13000:13399);
+x4b = conv(x4,r1);
+X4 = fft(x4b,1024);
+X4db = 20*log10(abs(X4));
+subplot(4,1,1); plot(t,x4);
+title(<span class="string">'test16k.wav Voiced Speech'</span>);
+ylabel(<span class="string">'waveform'</span>);
+subplot(4,1,2); plot(f,X4db);
+ylabel(<span class="string">'dB'</span>); legend(<span class="string">'log magnitude spectrum'</span>);
+
+n4b = [0:1:1023];
+x4_rcep = rceps(x4);
+subplot(4,1,3); plot(t,x4_rcep);
+ylabel(<span class="string">'value'</span>); legend(<span class="string">'real cepstrum'</span>);
+axis([-1 400 -5 12]);
+
+y4 = x4_rcep(1:length(x4_rcep)/2);
+L = zeros(1,length(y4));
+L(1:15) = 1;
+y4b = real(y4.*L');
+subplot(4,1,4); plot(y4b);
+ylabel(<span class="string">'dB'</span>); legend(<span class="string">'lowpass liftered log magnitude spectrum'</span>);
+</pre><h2>x5<a name="7"></a></h2><pre class="codeinput">[y1,fs1,bit1,fmt1] = loadwav(<span class="string">'test_16k.wav'</span>);
+f = linspace(0,fs1,1024);
+t = [0:1:399];
+n5 = [0:1:640];
+h = @(n) 0.54-0.46*cos(pi.*n./15);              <span class="comment">% Hamming window</span>
+r2 = h(n5);
+
+x5 = y1(3400:3799);
+x5b = conv(x5,r2);
+X5 = fft(x5b,1024);
+X5db = 20*log10(abs(X5));
+subplot(4,1,1); plot(t,x5);
+title(<span class="string">'test16k.wav Unoiced Speech'</span>);
+ylabel(<span class="string">'waveform'</span>);
+subplot(4,1,2); plot(f,X5db);
+ylabel(<span class="string">'dB'</span>); legend(<span class="string">'log magnitude spectrum'</span>);
+
+n5b = [0:1:1023];
+x5_rcep = rceps(x5);
+subplot(4,1,3); plot(t,x5_rcep);
+ylabel(<span class="string">'value'</span>); legend(<span class="string">'real cepstrum'</span>);
+axis([-1 400 -5 12]);
+
+y5 = x5_rcep(1:length(x5_rcep)/2);
+L = zeros(1,length(y5));
+L(1:15) = 1;
+y5b = real(y5.*L');
+subplot(4,1,4); plot(y5b);
+ylabel(<span class="string">'dB'</span>); legend(<span class="string">'lowpass liftered log magnitude spectrum'</span>);
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Part 2
+t1 = [-10:1:-1];
+y1 = 0.*t1;
+t2 = [0];
+y2 = log(8)+0.*t2;
+t3 = [1:1:10];
+y3 = ((1/6).^t3-(4).^t3)./t3;
+stem(t1,y1)
+hold on
+stem(t2,y2)
+hold on
+stem(t3,y3)
+
+%% Part 5
+%% x1
+n = [0:1:99];
+x1 = [1 zeros(1,98) -0.85];
+subplot(3,1,1); stem(n,x1);
+title('x_1[n] = \delta[n] - 0.85 \delta[n-99]'); 
+ylabel('waveform'); axis([-1 100 -1 1.2]);
+
+x1_hat = cceps(x1);
+subplot(3,1,2); stem(n,x1_hat);
+ylabel('complex cepstrum');
+
+c1 = rceps(x1);
+subplot(3,1,3); stem(n,c1);
+ylabel('real cepstrum');
+
+%% x2
+n = [0:1:99];
+x2 = sin(2/100*pi.*n);
+subplot(3,1,1); stem(n,x2);
+title('x_2[n] = sin[2\pi n/100]'); 
+ylabel('waveform'); axis([-1 100 -1.2 1.2]);
+
+x2_hat = cceps(x2);
+subplot(3,1,2); stem(n,x2_hat);
+ylabel('complex cepstrum');
+
+c2 = rceps(x2);
+subplot(3,1,3); stem(n,c2);
+ylabel('real cepstrum');
+
+%% x3
+n = [0:1:99];
+x3 = 0.95.^n;
+subplot(3,1,1); stem(n,x3);
+title('x_3[n] = 0.95^n'); 
+ylabel('waveform'); axis([-1 100 -0.5 1.2]);
+
+x3_hat = cceps(x3);
+subplot(3,1,2); stem(n,x3_hat);
+ylabel('complex cepstrum');
+
+c3 = rceps(x3);
+subplot(3,1,3); stem(n,c3);
+ylabel('real cepstrum');
+
+%% x4
+[y1,fs1,bit1,fmt1] = loadwav('test_16k.wav');
+f = linspace(0,fs1,1024);
+t = [0:1:399];
+n4 = [0:1:640];
+h = @(n) 0.54-0.46*cos(pi.*n./15);              % Hamming window
+r1 = h(n4);
+
+x4 = y1(13000:13399);
+x4b = conv(x4,r1);
+X4 = fft(x4b,1024);
+X4db = 20*log10(abs(X4));
+subplot(4,1,1); plot(t,x4);
+title('test16k.wav Voiced Speech');
+ylabel('waveform');
+subplot(4,1,2); plot(f,X4db);
+ylabel('dB'); legend('log magnitude spectrum');
+
+n4b = [0:1:1023];
+x4_rcep = rceps(x4);
+subplot(4,1,3); plot(t,x4_rcep);
+ylabel('value'); legend('real cepstrum');
+axis([-1 400 -5 12]);
+
+y4 = x4_rcep(1:length(x4_rcep)/2);
+L = zeros(1,length(y4));
+L(1:15) = 1;
+y4b = real(y4.*L');
+subplot(4,1,4); plot(y4b);
+ylabel('dB'); legend('lowpass liftered log magnitude spectrum');
+
+%% x5
+[y1,fs1,bit1,fmt1] = loadwav('test_16k.wav');
+f = linspace(0,fs1,1024);
+t = [0:1:399];
+n5 = [0:1:640];
+h = @(n) 0.54-0.46*cos(pi.*n./15);              % Hamming window
+r2 = h(n5);
+
+x5 = y1(3400:3799);
+x5b = conv(x5,r2);
+X5 = fft(x5b,1024);
+X5db = 20*log10(abs(X5));
+subplot(4,1,1); plot(t,x5);
+title('test16k.wav Unoiced Speech');
+ylabel('waveform');
+subplot(4,1,2); plot(f,X5db);
+ylabel('dB'); legend('log magnitude spectrum');
+
+n5b = [0:1:1023];
+x5_rcep = rceps(x5);
+subplot(4,1,3); plot(t,x5_rcep);
+ylabel('value'); legend('real cepstrum');
+axis([-1 400 -5 12]);
+
+y5 = x5_rcep(1:length(x5_rcep)/2);
+L = zeros(1,length(y5));
+L(1:15) = 1;
+y5b = real(y5.*L');
+subplot(4,1,4); plot(y5b);
+ylabel('dB'); legend('lowpass liftered log magnitude spectrum');
+
+##### SOURCE END #####
+--></body></html>
