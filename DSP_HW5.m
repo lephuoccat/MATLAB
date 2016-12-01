@@ -1,6 +1,6 @@
 %% i
-[x1,fs1] = wavread('Cardinal.wav');
-[x2,fs2] = wavread('Crow.wav');
+[x1,fs1] = audioread('Cardinal.wav');
+[x2,fs2] = audioread('Crow.wav');
 sound(x1,fs1);
 sound(x2,fs2);
 %% ii
