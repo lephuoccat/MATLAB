@@ -122,9 +122,9 @@ t=linspace(-10,10,1000);
 d1=[];
 for i=1:1000
     if t(i)>=-2 && t(i)<=0
-        d1(i)=2+t(i);
+        d1(i)=1+t(i)/2;
     elseif t(i)>0 && t(i)<=2
-        d1(i)=2-t(i);
+        d1(i)=1-t(i)/2;
     else
         d1(i)=0;
     end
