@@ -132,7 +132,7 @@ end
 P_d(1) = 1;
 P_f(1) = 1;
 
-figure, plot(P_f, P_d)
+figure, plot(P_f, P_d,'LineWidth',2)
 title('ROC Curve for E_s = 4');
 xlabel('P_f');
 ylabel('P_d');
@@ -150,7 +150,7 @@ energy = 16;
 alpha = sqrt(energy/1024);      % value of diagonal element to get E = 16
 A = alpha.*S;                   % create image matrix A
 E = sum(sum(A.^2));             % check the energy of the image
-fprintf("Total signal energy: %f\n", E);
+fprintf("Total signal energy: %.2f\n", E);
 
 l0 = zeros(500,1);
 l1 = zeros(500,1);
@@ -180,9 +180,9 @@ P_d(1) = 1;
 P_f(1) = 1;
 
 figure, plot(P_f, P_d)
-title('ROC Curve for E_s = 16');
-xlabel('P_f');
-ylabel('P_d');
+title('ROC Curve for d^2 = 16','FontSize',14);
+xlabel('Probability of False Alarm (P_f)','FontSize',14);
+ylabel('Probability of Detection (P_d)','FontSize',14);
 hold on
 plot([0,1],[0,1])
 

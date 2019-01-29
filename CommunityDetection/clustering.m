@@ -1,4 +1,4 @@
-function [A, A_new, flag, correct_flag] = clustering(A,n,num_element)
+function [A, A_new, flag, correct_flag] = clustering(A,n,num_element,penalty)
 size = 1;
 increment = 0;
 A_new = 0;
@@ -29,8 +29,8 @@ else
             Z = inverse_mat(X, A([1:size,i],i));
         end
         % If trace(inverse of combining matrix) strictly greater than 
-        % trace(inverse of individual matrices)
-        if trace(Z) > (trace(X) + Y + 0.0001)
+        % trace(inverse of individual matrices)         
+        if trace(Z) > (trace(X) + Y + penalty)
             %fprintf("Success!!! At index: %d, size = %d\n", i, size);
             size = size + 1;
             increment = 1;
@@ -43,13 +43,13 @@ else
 
     % A_new = A of un-clustered elements
     A_new = A(size+1:n, size+1:n);
-    fprintf("Size of this cluster: %d --- ", size);
+    % fprintf("Size of this cluster: %d --- ", size);
     if (size ~= num_element)
-        fprintf("Wrong\n");
+        % fprintf("Wrong\n");
         correct_flag = 0;
     else
         correct_flag = 1;
-        fprintf("Correct\n");
+        % fprintf("Correct\n");
     end
 end
 end

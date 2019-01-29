@@ -1,13 +1,15 @@
 function A = positive_definite_mat(n,cluster_index)
 % Generate a dense n x n symmetric, positive definite matrix
-A = rand(n,n); % generate a random n x n matrix
+A = rand(n,n);      % generate a random n x n matrix
+% A = normrnd(0,1,[n,n]);
 
 % construct a symmetric matrix using either
 A = 0.5*(A+A');
+% A = abs(0.5*(A+A'));
 
 % since A(i,j) < 1 by construction and a symmetric diagonally dominant matrix
 %   is symmetric positive definite, which can be ensured by adding nI
-A = A + randi([3,10],1,n).*eye(n);
+A = A + randi([5,10],1,n).*eye(n);
 
 % clustering matrix: 5 clusters
 m = cluster_index;
