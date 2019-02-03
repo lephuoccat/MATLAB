@@ -2,7 +2,8 @@
 close all
 clc, clear
 
-figure(), plot([0,1],[0,1])
+figure(), 
+%plot([0,1],[0,1])
 grid on, hold on
 
 D = [1 2 4 16];                             % list of parameters 
@@ -17,13 +18,13 @@ for index = 1:1:length(D)
         P_f(i) = 1-normcdf(W(i),-d/2,sqrt(d));
         P_d(i) = 1-normcdf(W(i),d/2,sqrt(d));
     end
-    
-    plot(P_f, P_d,'LineWidth',2)
+    probplot(P_f)
+    %plot(P_f, P_d,'LineWidth',2)
     hold on
 end
 
 title('ROC Curves for the SKE Case with Theoretical Approach','FontSize',14)
-legend({"Chance Diagonal","d^2 = 1","d^2 = 2","d^2 = 4","d^2 = 16"},'FontSize',14)
+legend({"d^2 = 1","d^2 = 2","d^2 = 4","d^2 = 16"},'FontSize',14)
 xlabel('Probability of False Alarm (P_f)','FontSize',14)
 ylabel('Probability of Detection (P_d)','FontSize',14)
 

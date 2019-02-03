@@ -148,7 +148,7 @@ elseif threshold == "sample"                    % every nth sample threshold
     end
     
 else
-    lambda_h0 = zeros(label_0,1);                   % decision statistics with label H0   
+    lambda_h0 = zeros(label_0,1);               % decision statistics with label H0   
     index = 1;
     for i = 1:1:N
         if labels(i) == 0
