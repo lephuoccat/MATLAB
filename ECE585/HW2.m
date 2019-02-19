@@ -54,8 +54,8 @@ for index = 1:1:length(D)
     lambda_1 = zeros(trials,1);                 % lambda|H1
     for i = 1:1:trials
         noise = normrnd(noise_mean,noise_var,[k,1]);
-        lambda_0(i) = (sum(noise.*S) - E/2)./noise_var;
-        lambda_1(i) = (sum((S + noise).*S) - E/2)./noise_var;
+        lambda_0(i) = exp((sum(noise.*S) - E/2)./noise_var);
+        lambda_1(i) = exp((sum((S + noise).*S) - E/2)./noise_var);
     end
 
     beta = [-5:0.1:5];
