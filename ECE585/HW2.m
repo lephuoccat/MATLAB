@@ -31,7 +31,8 @@ ylabel('Probability of Detection (P_d)','FontSize',14)
 close all
 clc, clear
 
-figure(), plot([0,1],[0,1])
+figure()
+plot([0,1],[0,1])
 grid on, hold on
 
 D = [1 2 4 16];                                 % list of parameters
@@ -71,6 +72,8 @@ for index = 1:1:length(D)
     plot(P_f, P_d,'LineWidth',2)
     hold on
 end
+plot([1,0],[0,1],'r')
+hold on
 
 title('ROC Curves for the SKE Case from Simulation','FontSize',14)
 legend({"Chance Diagonal","d^2 = 1","d^2 = 2","d^2 = 4","d^2 = 16"},'FontSize',14)

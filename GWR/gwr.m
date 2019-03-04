@@ -1,7 +1,7 @@
 function [nodes,edges] = gwr(datafile,weightfile,outfile,do_plot)
 % Parameters
 % activity threshold
-insertion_threshold = 0.7;
+insertion_threshold = 0.0005;
 % firing counter threshold
 hab_threshold = 0.1;
 % learning rate
@@ -29,7 +29,7 @@ ninputs = size(data,2);
 
 if(nargin<2)
 	[nodes,edges] = initialise_network(ninputs,data);
-    weightfile = ''; outfile = ''; do_plot = 1;
+    weightfile = ''; outfile = ''; do_plot = 0;
 elseif (strcmp(weightfile,''))
         % Get the user to choose a file
         [filename, pathname] = uigetfile('*.*');
@@ -38,9 +38,9 @@ elseif (strcmp(weightfile,''))
         end
         filename = [pathname,filename];
         [nodes,edges] = load_weights(filename);
-        do_plot = 1;
+        do_plot = 0;
 elseif (nargin<3)
-    outfile = ''; do_plot = 1;
+    outfile = ''; do_plot = 0;
     [nodes,edges] = load_weights(weightfile);
 else
 	[nodes,edges] = load_weights(weightfile);
